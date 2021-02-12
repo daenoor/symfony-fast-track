@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  web:
+    image: caddy:2-alpine 
+    ports: 
+      - "8090:80"
+    volumes:
+      - .:/app:cached
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+
+  app:
+    image: sf-fast-track
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app:cached
+
+volumes: 
+  caddy-data:
