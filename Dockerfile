@@ -4,9 +4,11 @@ RUN apk --no-cache add \
       bash \
       icu-libs \
       icu-dev \
+      postgresql-dev \
     && docker-php-ext-install \
       intl \
-      opcache
+      opcache \
+      pdo_pgsql
 
 COPY docker/app.ini /usr/local/etc/php/conf.d/99_app.ini
 COPY docker/xdebug.ini /usr/local/etc/php/conf.d/50_xdebug.ini
