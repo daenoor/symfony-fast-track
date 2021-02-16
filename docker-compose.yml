@@ -17,6 +17,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/app:cached
+    environment:
+      DATABASE_URL: "postgresql://fasttrack:fasttrack@db:5432/fasttrack?serverVersion=13&charset=utf8"
 
   db:
     image: postgres:13-alpine
