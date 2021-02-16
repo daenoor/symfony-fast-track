@@ -1,5 +1,13 @@
 FROM php:8.0-fpm-alpine
 
+RUN apk --no-cache add \
+      bash \
+      icu-libs \
+      icu-dev \
+    && docker-php-ext-install \
+      intl \
+      opcache
+
 COPY docker/app.ini /usr/local/etc/php/conf.d/99_app.ini
 COPY docker/xdebug.ini /usr/local/etc/php/conf.d/50_xdebug.ini
 
