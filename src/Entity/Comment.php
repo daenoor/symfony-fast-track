@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -48,6 +49,12 @@ class Comment
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $photoFilename;
+
+    #[Pure]
+    public function __toString(): string
+    {
+        return (string) $this->getEmail();
+    }
 
     public function getId(): ?int
     {
